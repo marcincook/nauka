@@ -1,6 +1,7 @@
 :root {
-    --color-text: #222;
-    --color-primary: #3c78cc;
+    --color-text: #334155;
+    --color-primary: #4338ca;
+    --color-primary-light: #818cf8;
     --color-border: #f4f4f4;
     --color-light: #fafafa;
     --color-lighter: #ffffff;
@@ -18,6 +19,8 @@ body {
     font-family: -apple-system, "Helvetica Neue", Arial, sans-serif;
     margin: 0;
     padding: 0;
+    color: var(--color-text);
+    font-size: 1rem; 
 }
 
 img{
@@ -35,6 +38,45 @@ a:focus-visible{
     text-decoration: underline;
 }
 
+h1, h2, h3,h4, h5, h6{
+    font-weight: 500;
+    line-height: 1.1;
+}
+h1{
+    font-size: 3rem;
+    line-height: 1;
+}
+
+.btn{
+    display: inline-block;
+    line-height: 1;
+    padding: 0.5em 1em;
+    border: 1px solid transparent;
+    border-radius: 0.25em;
+    outline: none;
+    font-family: inherit;
+    text-decoration: none;
+    font-size: 1rem;
+    word-break: keep-all;
+}
+.btn-primary{
+    background-color: var(--color-primary);
+    color: var(--color-light);
+    
+}
+.btn-outline-primary{
+    background-color: transparent;
+    color: var(--color-primary);
+    border-color: var(--color-primary); 
+}
+
+.hero .cta{
+    display: flex ;
+    align-items: center;
+    gap: 0.5em;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
 section{
     padding-block: 1rem;
     border-bottom: 1px solid var(--color-border);
@@ -59,25 +101,47 @@ section{
 
 .wrapper{
     margin-inline: auto;
-    width: min(100%,800px);
-    overflow-x: hidden;
+    width: min(100%,1400px);
+    overflow-x: clip;
 }
 
 header {
-    position: fixed;
+    /* position: sticky; */
+    position: absolute;
     left: 0;
     right: 0;
+    margin-top: 30px;
+    z-index: 9999999;
 
     display: flex;
-    align-items: center;
+    
     max-width: 100%; 
     padding-inline: var(--p);
-    border-bottom: 1px solid var(--color-border);
+    /* border-bottom: 1px solid var(--color-border); */
 
+    & .logo{
+        font-size: 1.8rem;
+        line-height: 1.5rem;
+        display: flex;
+        gap: 2px;
+        & strong{
+            color: var(--color-primary);
+        }
+        & span{
+            color: var(--color-lighter);
+            border-right: 20px solid var(--color-primary);
+            padding-right: 4px;
+            display: inline-block;
+        }
+    }
     & nav {
         margin-left: auto;
-        border: 1px solid var(--color-border);
+        /* border: 1px solid var(--color-border); */
 
+    }
+    & .wrapper{
+        display: flex;
+        align-items: center;
     }
 }
 
@@ -94,27 +158,58 @@ nav ul {
     }
 
     & a {
-        text-decoration-style: wavy;
-        text-decoration-line: underline;
+        /* text-decoration-style: wavy; */
+        text-decoration-line: none;
         text-decoration-thickness: 2px;
         display: block;
+        color: var(--color-primary-light);
     }
 
     & a:hover {
-        text-decoration:  wavy var(--color-primary);
+        text-decoration:  wavy var(--color-primary-light);
+        text-decoration-line: overline;
     }
 }
 
 .hero{
     display: grid;
-    place-items: center;
+    grid-template-columns: repeat(12,1fr);
+    /* place-items: center; */
     position: relative;
-    height: 90svh;
+    /* height: 50svw; */
     overflow-x: clip;
-    padding-block: 7rem;
+    padding-top: 12rem;
+    padding-bottom: 12rem;
     margin-block-end: 3rem;
+    min-height: 50svh;
     /*background-color: var(--color-primary);*/
+    /* color: var(--color-light); */
+}
+
+.hero .info{
     color: var(--color-light);
+}
+
+.hero .wrapper{
+    display: flex;
+    align-items: center;
+
+    & .info{
+        width: 300px;
+    }
+    & .illustration{
+        max-width: 50%;
+
+        & svg{
+            width: 100%;
+            height: auto;
+        }
+    }
+}
+
+
+.hero .illustration{
+    /* background-color: #3c78cc; */
 }
 
 .hero-image{
@@ -123,9 +218,20 @@ nav ul {
     inset: 0;
     width: 100%;
     height: 100%;
-    opacity: 0.5;
+    opacity: 0.6;
     object-fit: cover;
     z-index: -1;
+    /* filter: blur(5px); */
+}
+.hero::after{
+    content: '';
+    background: linear-gradient(40deg,#334155,transparent,#334155);
+    position: absolute;
+    inset: 0;
+    z-index: -1; 
+    /* filter: drop-shadow(2px 4px 6px black); */
+    filter: drop-shadow(2px 4px 6px black);
+    
 }
 
 /* article > img{
@@ -140,8 +246,10 @@ nav ul {
 }  */
 
 @media (prefers-reduced-motion: no-preference){
-    img{
-      max-height: 70vh;
+    .article-image{
+      /* max-height: 70vh; */
+      /* width: 300px; */
+
       margin: 0 auto;
       display: block;
       opacity: 0;
@@ -160,13 +268,92 @@ nav ul {
   }
   
   .box {
-    height: 20vh;
-    padding: var(--p); 
+    /* height: 20vh; */
+    padding: var(--p-small); 
     background: var(--color-light);
     width: 400px;
     margin: 30px auto;
     border-radius: 12px;
-    font-size: 1.4em; 
+    /* font-size: 1.4em;  */
     border: 1px solid var(--color-border);
     box-shadow: 1px 1px 6px rgba(0,0,0,.06);
   }
+
+  .hero .info{
+    grid-column: 2/5;
+    /* display: grid; */
+    /* align-items: center; */
+    /* justify-content: center; */
+    padding-top: 3rem;
+  }
+  .lead{
+    font-size: 1.15em;
+    font-weight: 200;
+  }
+  .fw-light{
+    font-weight: 200;
+  }
+
+  @keyframes bounce {
+    from{ scale: 1;}
+    to{scale:1.01}
+  }
+  .hero .boxes{
+     
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    /* height: 100vh; */
+    /* width: 100vw; */
+    /* display: flex; */
+    /* align-items: center; */
+    /* justify-content: center; */
+
+    grid-column: 6/-1;
+    position: relative;
+    /* background-color: var(--color-primary); */
+    height: 100%;
+    width: 100%;
+    align-self: stretch;
+    /* rotate:4deg; */
+    isolation: isolate;
+
+    & .box{
+        position: absolute;
+        display: block; 
+        box-shadow: 1px 1px 26px #2d456722;
+        transform:  rotateX(5deg) rotateY(-15deg) rotateZ(8deg);
+        transform-origin: left top;
+        border: 1px solid var(--color-border);
+        animation: bounce infinite alternate;
+        transition: opacity 500ms ease-in-out;
+    }
+    & .box-2{ 
+        left: 20px; 
+        top:20px;
+        z-index: 1;
+        animation-delay: 2500;
+        animation-duration: 2500ms;
+        backface-visibility: visible;
+    }
+    & .box-3{ 
+        left: 180px; 
+        top:60px;
+        z-index: 30;
+        animation-delay: 1500;
+        animation-duration: 1500ms;
+    }
+    & .box-1{ 
+         height: 500px;
+         /* width: max(calc(100% - 160px),100%); */
+        left: 160px; 
+        top:-30px;
+        z-index: 10;
+        animation-delay: 500;
+        animation-duration: 2500ms;
+    }
+}
+.box:hover,
+.box:focus{
+    z-index: 100;
+    opacity: 0.2;
+}
