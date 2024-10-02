@@ -173,18 +173,30 @@ nav ul {
 
 .hero{
     display: grid;
-    grid-template-columns: repeat(12,1fr);
-    /* place-items: center; */
-    position: relative;
-    /* height: 50svw; */
+    grid-template-columns: repeat(12,1fr); 
+    position: relative; 
     overflow-x: clip;
     padding-top: 12rem;
     padding-bottom: 12rem;
     margin-block-end: 3rem;
-    min-height: 50svh;
-    /*background-color: var(--color-primary);*/
-    /* color: var(--color-light); */
+    min-height: 50svh; 
+    /* overflow-y: clip; */
 }
+
+/* .hero {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr); 
+    position: relative; 
+    overflow-x: clip;
+    padding-top: 12rem;
+    padding-bottom: 12rem;
+    margin-block-end: 3rem;
+    min-height: 50svh; 
+    margin: 2rem;
+    border-radius: 2rem;
+    overflow: hidden;
+    border: 7px solid #ccc; 
+} */
 
 .hero .info{
     color: var(--color-light);
@@ -222,6 +234,7 @@ nav ul {
     object-fit: cover;
     z-index: -1;
     /* filter: blur(5px); */
+    
 }
 .hero::after{
     content: '';
@@ -230,7 +243,10 @@ nav ul {
     inset: 0;
     z-index: -1; 
     /* filter: drop-shadow(2px 4px 6px black); */
-    filter: drop-shadow(2px 4px 6px black);
+    filter: drop-shadow(0 0 1px black);
+    overflow: hidden;
+    /* background: linear-gradient(to right, red, purple);
+  padding: 3px; */
     
 }
 
